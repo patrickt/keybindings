@@ -1,3 +1,5 @@
 {
     "^j" = "insertNewline:";
+    "~f" = "moveWordForward:";
+    "~b" = "moveWordBackward:";
 }
