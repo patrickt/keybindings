@@ -1,0 +1,4 @@
+My macOS keybindings
+====================
+
+Surprisingly few people know that macOS allows you to customize keybindings globally, across the entire system, by editing =~/Library/KeyBindings/DefaultKeyBindings.plist=. This is useful for a great many reasons, especially with users who need to customize their system for accessibility’s sake. I generally use it to make text navigation commands more like Emacs.
