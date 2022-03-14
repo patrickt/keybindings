@@ -24,7 +24,7 @@ mostRecentlyDownloaded pat = do
   pure newest
 
 main :: IO ()
-main = shakeArgs shakeOptions {shakeFiles = "_build", shakeVerbosity = Verbose} $ do
+main = shakeArgs shakeOptions {shakeFiles = "_build"} $ do
 
   want ["keymacs.edn", "custom.hex"]
 
@@ -38,7 +38,6 @@ main = shakeArgs shakeOptions {shakeFiles = "_build", shakeVerbosity = Verbose} 
     let qmk = home </> "src/qmk_firmware"
     let keymacs = qmk </> "keyboards"
     newest <- mostRecentlyDownloaded "firmware-*.zip"
-
 
     cmd_ "unzip -o" [home </> "Downloads" </> newest, "-d", keymacs]
     cmd_ "make -C" [qmk, "keymacs/a620n88a/teensy_2:custom"]
