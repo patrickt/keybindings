@@ -36,13 +36,14 @@ main = shakeArgs shakeOptions {shakeFiles = "_build", shakeVerbosity = Verbose} 
     alwaysRerun
     home <- liftIO getHomeDirectory
     let qmk = home </> "src/qmk_firmware"
-    let keymacs = qmk
+    let keymacs = qmk </> "keyboards"
     newest <- mostRecentlyDownloaded "firmware-*.zip"
+
 
     cmd_ "unzip -o" [home </> "Downloads" </> newest, "-d", keymacs]
     cmd_ "make -C" [qmk, "keymacs/a620n88a/teensy_2:custom"]
-    cmd_ "open -a" ["Teensy"]
-    copyFileChanged (qmk </> "keymacs_a620n88a_teensy_2_custom.hex") out
+    copyFile' (qmk </> "keymacs_a620n88a_teensy_2_custom.hex") out
+    cmd_ "md5sum" [out]
 
 
   "keymacs.edn" %> \out -> do
